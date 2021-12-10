@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from 'react-redux';
 
 import AddForm from './components/AddForm';
@@ -9,23 +9,28 @@ import { fetchSmurfs } from "./actions";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
+// import { props } from "bluebird";
 
-const App = (props)=> {
+const App = (props) => {
+
+ const { fetchSmurfs } = props;
+
   useEffect(() => {
     fetchSmurfs();
   })
+  
+    return (
+      <div className="App">
+        <Header />
 
-  return (
-    <div className="App">
-      <Header />
+        <main>
+          <SmurfList/>
+          <AddForm/>
+        </main>
+      </div>
+    );
+  }
 
-      <main>
-        <SmurfList/>
-        <AddForm/>
-      </main>
-    </div>
-  );
-}
 
 export default connect(null, { fetchSmurfs }) (App);
 

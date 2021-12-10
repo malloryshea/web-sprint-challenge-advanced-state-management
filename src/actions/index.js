@@ -1,38 +1,35 @@
 import axios from 'axios';
 
-export const SMURF_START = 'SMURF_START';
-export const SMURF_SUCCESS = 'SMURF_SUCCESS';
-export const SMURF_FAIL = 'SMURF_FAIL';
-export const SMURF_ADD = 'SMURF_ADD';
+export const SMURF_START = "SMURF_START";
+export const SMURF_SUCCESS = "SMURF_SUCCESS";
+export const ADD_SMURF = "ADD_SMURF";
+export const SMURF_FAIL = "SMURF_FAIL";
 
-export const fetchSmurfs = () => {
-    return (dispatch => {
-        dispatch(smurfStart)
-        axios.get('http://localhost:3333/smurfs')
-        .then(res => {
-            dispatch(smurfSuccess(res.data))
-            console.log(smurfSuccess(res.data))
+export const fetchSmurfs = () => dispatch => {
+    dispatch({type: SMURF_START});
+    axios.get('http://localhost:3333/smurfs')
+        .then(res=>{
+            dispatch({type:SMURF_SUCCESS, payload:res.data});
         })
-        .catch(err => {
-            dispatch(smurfFail(err));
+        .catch(err=>{
+            dispatch({type:SMURF_FAIL, payload:err});
         })
-    })
 }
 
-export const smurfStart = () => {
-    return({type:SMURF_START})
-}
+export const addSmurf = (smurf) => dispatch => {
+    if (smurf.name === '' ||  smurf.nickname === '' || smurf.position === '') {
+        dispatch({type:SMURF_FAIL, payload: "Name, Position and Nickname are required fields."});
+        return;
+    }
 
-export const smurfSuccess = () => {
-    return({type: SMURF_SUCCESS, payload: smurfs})
-}
-
-export const smurfFail = error => {
-    return({type: SMURF_FAIL, payload: value})
-}
-
-export const addSmurf = value => {
-    return({type: SMURF_ADD, payload: value})
+    dispatch({type: SMURF_START});
+    axios.post('http://localhost:3333/smurfs', smurf)
+        .then(res=> {
+            dispatch({type:ADD_SMURF, payload: smurf});
+        })
+        .catch(err=>{
+            dispatch({type:SMURF_FAIL, payload:err.response.data.Error});
+        })
 }
 
 
