@@ -1,4 +1,4 @@
-import { SMURF_START, SMURF_SUCCESS, SMURF_FAIL, ADD_SMURF} from "../actions"
+import { SMURF_START, SMURF_SUCCESS, SMURF_FAIL, SMURF_ADD} from "../actions"
 export const initialState = {
     smurfs: [],
     loading: false,
@@ -26,7 +26,7 @@ const reducer = (state = initialState, action)=>{
                 loading:false,
                 error:action.payload,
             }
-        case ADD_SMURF:
+        case SMURF_ADD:
             const addSmurf = {
                 ...action.payload
             }
