@@ -102,10 +102,10 @@ In this project, you will build the reducer, actions and basic redux connects to
 * Schedule time to review, refine, and assess your work and perform basic professional polishing including spell-checking and grammar-checking on your work.
 
 ## Submission format
-* [ ] Submit via Codegrade by committing and pushing any new changes to **your main branch.**
-* [ ] Check Codegrade before the deadline to compare its results against your local tests.
-* [ ] Check Codegrade on the days following the Sprint Challenge for reviewer feedback. For more information on how to access and read your feedback, check [here](https://www.notion.so/lambdaschool/How-to-View-Feedback-in-CodeGrade-c5147cee220c4044a25de28bcb6bb54a)
-* [ ] New commits will be evaluated by Codegrade if pushed before the sprint challenge deadline.
+* [ x] Submit via Codegrade by committing and pushing any new changes to **your main branch.**
+* [ x] Check Codegrade before the deadline to compare its results against your local tests.
+* [ x] Check Codegrade on the days following the Sprint Challenge for reviewer feedback. For more information on how to access and read your feedback, check [here](https://www.notion.so/lambdaschool/How-to-View-Feedback-in-CodeGrade-c5147cee220c4044a25de28bcb6bb54a)
+* [ x] New commits will be evaluated by Codegrade if pushed before the sprint challenge deadline.
 
 ## Interview Questions
 
@@ -113,8 +113,22 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. What problem does the context API help solve?
 
+Context API helps to share data with multiple components without having to pass data through props manually.
+
 2. In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+Actions are the source of information for the store and they carry a payload of information from your app to the store.
+
+Reducers are functions that take an action and the previous state of the app and returns the new state.
+
+The store is a container for managing, accessing, and monitoring the dynamic state of an app.
+
+The store is known as the single source of truth because the global state of your app is stored in an object tree within a single store which makes it easy to create universal apps with no extra coding effort.
 
 3. What does `redux-thunk` allow us to do? How does it change our `action-creators`?
 
+Redux-thunk allows us to call action creators that return a function instead of an action object. It changes our action-creators by avoiding directly causing side effects, anything impure will be wrapped in a thunk.
+
 4. What is your favorite state management system you've learned and this sprint? Please explain why!
+
+My favorite state management system that I've learned within this sprint is reducer functions because they are pure function with no side effects that allow us to manage change in state while maintaining the immutability that we want in our components. 
